@@ -43,19 +43,19 @@ while (loop) {
                     soma += a.notas[i];
                 }
                 let media = soma / a.notas.length;
-                console.log(`\t- Média : ${media}`);
+                console.log(`\t- Média: ${media}`);
             }
             console.log("------------------------");
             readline.keyInPause();
             break;
         case 2:
-            let nomeAluno = readline.question("Digite o nome do aluno:");
+            let nomeAluno = readline.question("Digite o nome do aluno: ");
             let notasAluno = [];
             for (let i = 0; i < 3; i++) {
                 notasAluno[i] = readline.questionFloat(`Digite a nota ${i + 1}: `);
             }
             const aluno = {
-                matricula: gerador_matricula++,
+                matricula: ++gerador_matricula,
                 nome: nomeAluno,
                 notas: notasAluno,
             };
@@ -87,10 +87,11 @@ while (loop) {
             for (const a of alunos) {
                 if (a.matricula === matriculaBusca) {
                     console.log(a.nome);
-                    a.nome = readline.question("Digite o nome do aluno:");
+                    a.nome = readline.question("Digite o nome do aluno: ");
                     for (let i = 0; i < a.notas.length; i++) {
                         a.notas[i] = readline.questionFloat(`Digite a nota ${i + 1}: `);
                     }
+                    break;
                 }
             }
             console.log("Aluno alterado com sucesso!");
@@ -98,13 +99,13 @@ while (loop) {
             break;
         case 5:
             matriculaBusca = readline.questionInt(
-                "Matricula do aluno que deseja alterar: "
+                "Matricula do aluno que deseja remover: "
             );
             for (const a of alunos) {
                 if (a.matricula === matriculaBusca) {
                     console.log(a.nome);
-                    console.log(`Excluido aluno ${a.nome} do sistema..."`);
-                    alunos.splice(a, 1);
+                    console.log(`Excluindo aluno ${a.nome} do sistema..."`);
+                    alunos.splice(a.matricula-1, 1);
                 }
             }
             console.log("Aluno excluído com sucesso!");
